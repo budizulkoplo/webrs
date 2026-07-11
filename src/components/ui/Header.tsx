@@ -330,14 +330,13 @@ const Header: React.FC<HeaderProps> = ({ websiteSettings, menuCategories }) => {
                 </span>
 
                 {websiteSettings?.logo_akreditasi_url && (
-                  <div className="relative hidden sm:block">
+                  <div className="relative hidden h-12 w-[150px] shrink-0 sm:block lg:h-14 lg:w-[180px]">
                     <Image
                       src={websiteSettings?.logo_akreditasi_url}
                       alt="Accreditation"
-                      width={72}
-                      height={72}
-                      style={{ width: 'auto', height: 'auto' }}
-                      className="w-18 h-18 object-contain transition-transform group-hover:scale-105"
+                      fill
+                      sizes="(min-width: 1024px) 180px, 150px"
+                      className="object-contain transition-transform group-hover:scale-105"
                     />
                   </div>
                 )}

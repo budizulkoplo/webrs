@@ -2,9 +2,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    unoptimized: true,
-  },
   // Pastikan static file serving berjalan normal
   async rewrites() {
     return [
