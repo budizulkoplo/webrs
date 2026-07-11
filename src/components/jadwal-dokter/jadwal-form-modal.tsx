@@ -20,6 +20,7 @@ import Select from '@/components/atoms/select'
 import { JadwalDokter } from '@/types/jadwal'
 import { createJadwalDokter, updateJadwalDokter } from '@/lib/actions/jadwal-actions'
 import { toast } from 'sonner'
+import { formatTimeWib } from '@/lib/format-time'
 
 const jadwalSchema = z.object({
     id_dokter: z.string().min(1, 'Dokter harus dipilih'),
@@ -74,8 +75,8 @@ export function JadwalFormModal({ open, onOpenChange, jadwal, dokters }: JadwalF
         defaultValues: {
             id_dokter: jadwal ? String(jadwal.id_dokter) : '',
             hari: jadwal ? jadwal.hari : '',
-            jam_mulai: jadwal ? jadwal.jam_mulai.toTimeString().slice(0, 5) : '',
-            jam_selesai: jadwal ? jadwal.jam_selesai.toTimeString().slice(0, 5) : '',
+            jam_mulai: jadwal ? formatTimeWib(jadwal.jam_mulai) : '',
+            jam_selesai: jadwal ? formatTimeWib(jadwal.jam_selesai) : '',
             status: jadwal ? String(jadwal.status) : '1',
         }
     })
@@ -128,8 +129,8 @@ export function JadwalFormModal({ open, onOpenChange, jadwal, dokters }: JadwalF
             reset({
                 id_dokter: jadwal ? String(jadwal.id_dokter) : '',
                 hari: jadwal ? jadwal.hari : '',
-                jam_mulai: jadwal ? jadwal.jam_mulai.toTimeString().slice(0, 5) : '',
-                jam_selesai: jadwal ? jadwal.jam_selesai.toTimeString().slice(0, 5) : '',
+                jam_mulai: jadwal ? formatTimeWib(jadwal.jam_mulai) : '',
+                jam_selesai: jadwal ? formatTimeWib(jadwal.jam_selesai) : '',
                 status: jadwal ? String(jadwal.status) : '1',
             })
         }

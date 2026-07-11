@@ -11,6 +11,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { JadwalDokter } from '@/types/jadwal'
+import { formatTimeWib } from '@/lib/format-time'
 
 interface JadwalDetailModalProps {
     open: boolean
@@ -70,13 +71,13 @@ export function JadwalDetailModal({ open, onOpenChange, jadwal }: JadwalDetailMo
                         <div>
                             <label className="text-sm font-medium text-gray-500 dark:text-gray-400">Jam Mulai</label>
                             <p className="text-sm font-semibold">
-                                {jadwal.jam_mulai.toTimeString().slice(0, 5)}
+                                {formatTimeWib(jadwal.jam_mulai)}
                             </p>
                         </div>
                         <div>
                             <label className="text-sm font-medium text-gray-500 dark:text-gray-400">Jam Selesai</label>
                             <p className="text-sm font-semibold">
-                                {jadwal.jam_selesai.toTimeString().slice(0, 5)}
+                                {formatTimeWib(jadwal.jam_selesai)}
                             </p>
                         </div>
                     </div>

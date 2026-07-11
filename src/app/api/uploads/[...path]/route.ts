@@ -25,7 +25,7 @@ export async function GET(
   const filePath = join(process.cwd(), 'public', 'uploads', relPath);
 
   if (!existsSync(filePath)) {
-    const legacyOrigin = process.env.LEGACY_UPLOAD_ORIGIN || 'https://rspkuboja.com';
+    const legacyOrigin = process.env.LEGACY_UPLOAD_ORIGIN || 'https://rskuboja.com';
     const legacyUrl = `${legacyOrigin.replace(/\/$/, '')}/uploads/${relPath}`;
 
     try {

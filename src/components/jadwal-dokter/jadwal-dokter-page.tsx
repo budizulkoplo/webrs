@@ -33,6 +33,7 @@ import { deleteJadwalDokter } from '@/lib/actions/jadwal-actions'
 import { Plus, Eye, Edit, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { StatusSwitch } from '@/components/molecules/status-switch'
+import { formatTimeWib } from '@/lib/format-time'
 
 interface JadwalDokterPageProps {
     initialData: JadwalDokter[]
@@ -128,12 +129,12 @@ export function JadwalDokterPage({ initialData, dokters }: JadwalDokterPageProps
         {
             accessorKey: 'jam_mulai',
             header: 'Jam Mulai',
-            cell: ({ row }) => row.original.jam_mulai.toTimeString().slice(0, 5),
+            cell: ({ row }) => formatTimeWib(row.original.jam_mulai),
         },
         {
             accessorKey: 'jam_selesai',
             header: 'Jam Selesai',
-            cell: ({ row }) => row.original.jam_selesai.toTimeString().slice(0, 5),
+            cell: ({ row }) => formatTimeWib(row.original.jam_selesai),
         },
         {
             accessorKey: 'status',

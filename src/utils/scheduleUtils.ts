@@ -1,5 +1,6 @@
 // utils/scheduleUtils.ts
 import type { JadwalDokters, GroupedSchedule } from '@/types/jadwal-public';
+import { formatTimeWib } from '@/lib/format-time';
 
 const DAYS_ORDER = [
     'Senin',
@@ -21,8 +22,8 @@ export function groupSchedulesByTime(jadwals: JadwalDokters[]): GroupedSchedule[
     }>();
 
     jadwals.forEach(jadwal => {
-        const jamMulai = formatTime(jadwal.jam_mulai);
-        const jamSelesai = formatTime(jadwal.jam_selesai);
+        const jamMulai = formatTimeWib(jadwal.jam_mulai);
+        const jamSelesai = formatTimeWib(jadwal.jam_selesai);
         const key = `${jamMulai}-${jamSelesai}-${jadwal.status}`;
 
         if (!timeGroups.has(key)) {
@@ -44,10 +45,6 @@ export function groupSchedulesByTime(jadwals: JadwalDokters[]): GroupedSchedule[
         jam_selesai: group.jam_selesai,
         status: group.status
     }));
-}
-
-function formatTime(date: Date): string {
-    return date.toTimeString().slice(0, 5);
 }
 
 export function formatHari(hari: string[]): string {

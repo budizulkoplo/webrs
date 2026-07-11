@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Dokter, ProcessedDoctor, ProcessedSchedule } from '@/types/public';
 import { isValidImageUrl } from '@/lib/validators';
+import { formatTimeWib } from '@/lib/format-time';
 
 interface DoctorScheduleSectionProps {
   doctorsWithSchedule: Dokter[];
@@ -41,11 +42,6 @@ const groupConsecutiveDays = (days: string[]): string[] => {
   );
 };
 
-// Fungsi untuk format waktu dari Date ke string
-const formatTimeFromDate = (dateTime: Date): string => {
-  return dateTime.toTimeString().substring(0, 5); // HH:MM
-};
-
 export default function DoctorScheduleSection({ doctorsWithSchedule }: DoctorScheduleSectionProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const itemsPerSlide = 3; // Desktop: 3 cards, akan responsive
@@ -60,8 +56,8 @@ export default function DoctorScheduleSection({ doctorsWithSchedule }: DoctorSch
     }> = {};
 
     doctor.JadwalDokters.forEach(schedule => {
-      const jamMulai = formatTimeFromDate(new Date(schedule.jam_mulai));
-      const jamSelesai = formatTimeFromDate(new Date(schedule.jam_selesai));
+      const jamMulai = formatTimeWib(schedule.jam_mulai);
+      const jamSelesai = formatTimeWib(schedule.jam_selesai);
       const timeKey = `${jamMulai}-${jamSelesai}`;
 
       if (!scheduleGroups[timeKey]) {

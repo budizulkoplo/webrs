@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/context-menu'
 import { JadwalDokter } from '@/types/jadwal'
 import { Eye, Edit, Trash2 } from 'lucide-react'
+import { formatTimeWib } from '@/lib/format-time'
 
 interface JadwalMobileListProps {
     data: JadwalDokter[]
@@ -61,7 +62,7 @@ export function JadwalMobileList({ data, onView, onEdit, onDelete }: JadwalMobil
                                 <div className="mt-3 flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
                                     <span className="font-medium">{jadwal.hari}</span>
                                     <span>
-                                        {jadwal.jam_mulai.toTimeString().slice(0, 5)} - {jadwal.jam_selesai.toTimeString().slice(0, 5)}
+                                        {formatTimeWib(jadwal.jam_mulai)} - {formatTimeWib(jadwal.jam_selesai)}
                                     </span>
                                 </div>
                             </CardContent>

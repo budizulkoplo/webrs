@@ -22,6 +22,7 @@ import type {
   GroupedSchedule
 } from '@/types/jadwal-public';
 import { Avatar, AvatarImage } from '../ui/avatar';
+import { formatTimeWib } from '@/lib/format-time';
 
 interface JadwalDokterTableProps {
   data: PrismaDokters;
@@ -426,8 +427,8 @@ function groupSchedulesByTime(jadwals: {
   }>();
 
   jadwals.forEach(jadwal => {
-    const jamMulai = jadwal.jam_mulai.toTimeString().slice(0, 5);
-    const jamSelesai = jadwal.jam_selesai.toTimeString().slice(0, 5);
+    const jamMulai = formatTimeWib(jadwal.jam_mulai);
+    const jamSelesai = formatTimeWib(jadwal.jam_selesai);
     const key = `${jamMulai}-${jamSelesai}-${jadwal.status}`;
 
     if (!timeGroups.has(key)) {
