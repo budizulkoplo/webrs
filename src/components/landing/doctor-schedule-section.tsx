@@ -125,9 +125,9 @@ export default function DoctorScheduleSection({ doctorsWithSchedule }: DoctorSch
   if (!processedDoctors.length) return null;
 
   return (
-    <section className="py-16 lg:py-24 bg-white max-w-7xl mx-auto">
+    <section className="py-10 lg:py-14 bg-white max-w-7xl mx-auto">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Jadwal Dokter
           </h2>
@@ -157,31 +157,32 @@ export default function DoctorScheduleSection({ doctorsWithSchedule }: DoctorSch
                         className="hover:shadow-lg transition-all duration-300"
                       >
                         <CardContent className="p-6">
-                          <div className="flex items-center space-x-4 mb-4">
-                            <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <div className="mb-6 flex flex-col items-center text-center">
+                            <div className="relative h-40 w-32 overflow-hidden rounded-2xl border border-[#07b8b2]/15 bg-gradient-to-b from-[#eefdfc] to-white shadow-sm">
                               {doctor.photo && isValidImageUrl(doctor.photo) ? (
                                 <Image
                                   src={doctor.photo}
                                   alt={doctor.nama_dokter}
                                   fill
-                                  className="object-cover"
+                                  sizes="128px"
+                                  className="object-contain object-bottom p-2"
                                 />
                               ) : (
-                                <div className="w-full h-full bg-[#07b8b2]/10 flex items-center justify-center text-[#07b8b2] font-semibold text-lg">
+                                <div className="w-full h-full bg-[#07b8b2]/10 flex items-center justify-center text-[#07b8b2] font-semibold text-3xl">
                                   {doctor.nama_dokter.charAt(0)}
                                 </div>
                               )}
                             </div>
-                            <div>
-                              <h3 className="font-semibold text-gray-900 text-lg">
+                            <div className="mt-5 min-w-0">
+                              <h3 className="text-xl font-bold leading-snug text-gray-950">
                                 {doctor.nama_dokter}
                               </h3>
-                              <div className="flex flex-wrap gap-1 mt-1">
+                              <div className="mt-3 flex flex-wrap justify-center gap-1.5">
                                 {doctor.dokter_spesialis?.map((spec, idx) => (
                                   <Badge
                                     key={`${spec.id_dokter.toString()}-${spec.id_spesialis.toString()}-${idx}`}
                                     variant="secondary"
-                                    className="text-xs bg-[#07b8b2]/10 text-[#07b8b2] hover:bg-[#07b8b2]/20"
+                                    className="bg-[#07b8b2]/10 px-2.5 py-1 text-xs font-semibold text-[#07b8b2] hover:bg-[#07b8b2]/20"
                                   >
                                     {spec.spesialis.nama_spesialis}
                                   </Badge>
@@ -194,19 +195,19 @@ export default function DoctorScheduleSection({ doctorsWithSchedule }: DoctorSch
                             {doctor.processedSchedules.map((schedule, idx) => (
                               <div
                                 key={idx}
-                                className="border-l-4 border-[#07b8b2] pl-4 py-2"
+                                className="rounded-xl border border-slate-100 bg-slate-50/70 px-4 py-3"
                               >
-                                <div className="flex items-center space-x-2 mb-1">
+                                <div className="mb-2 flex items-center justify-center space-x-2">
                                   <Clock className="w-4 h-4 text-[#07b8b2]" />
-                                  <span className="font-medium text-gray-900">
+                                  <span className="font-semibold text-gray-900">
                                     {schedule.jam_mulai} - {schedule.jam_selesai}
                                   </span>
                                 </div>
 
                                 {schedule.activeDays.length > 0 && (
-                                  <div className="flex items-start space-x-2 mb-1">
-                                    <Calendar className="w-4 h-4 text-gray-600 mt-0.5" />
-                                    <div className="flex flex-wrap gap-1">
+                                  <div className="mb-1 flex items-start justify-center space-x-2">
+                                    <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-gray-600" />
+                                    <div className="flex flex-wrap justify-center gap-1">
                                       {schedule.activeDays.map((dayGroup, dayIdx) => (
                                         <Badge
                                           key={dayIdx}
@@ -221,9 +222,9 @@ export default function DoctorScheduleSection({ doctorsWithSchedule }: DoctorSch
                                 )}
 
                                 {schedule.inactiveDays.length > 0 && (
-                                  <div className="flex items-start space-x-2">
-                                    <Calendar className="w-4 h-4 text-red-500 mt-0.5" />
-                                    <div className="flex flex-wrap gap-1">
+                                  <div className="flex items-start justify-center space-x-2">
+                                    <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-red-500" />
+                                    <div className="flex flex-wrap justify-center gap-1">
                                       {schedule.inactiveDays.map((day, dayIdx) => (
                                         <Badge
                                           key={dayIdx}
@@ -252,14 +253,14 @@ export default function DoctorScheduleSection({ doctorsWithSchedule }: DoctorSch
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white shadow-lg hover:shadow-xl text-gray-600 hover:text-[#07b8b2] p-3 rounded-full transition-all duration-200 border"
+                className="absolute left-0 top-1/2 hidden -translate-y-1/2 rounded-full border bg-white p-3 text-gray-600 shadow-lg transition-all duration-200 hover:text-[#07b8b2] hover:shadow-xl md:block md:-translate-x-6 lg:-translate-x-12 xl:-translate-x-16"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
 
               <button
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white shadow-lg hover:shadow-xl text-gray-600 hover:text-[#07b8b2] p-3 rounded-full transition-all duration-200 border"
+                className="absolute right-0 top-1/2 hidden -translate-y-1/2 rounded-full border bg-white p-3 text-gray-600 shadow-lg transition-all duration-200 hover:text-[#07b8b2] hover:shadow-xl md:block md:translate-x-6 lg:translate-x-12 xl:translate-x-16"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -268,15 +269,34 @@ export default function DoctorScheduleSection({ doctorsWithSchedule }: DoctorSch
 
           {/* Indicators */}
           {totalSlides > 1 && (
-            <div className="flex justify-center mt-8 space-x-2">
-              {Array.from({ length: totalSlides }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-200 ${index === currentSlide ? 'bg-[#07b8b2] w-6' : 'bg-gray-300'
-                    }`}
-                />
-              ))}
+            <div className="mt-8 flex items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={prevSlide}
+                className="grid h-10 w-10 place-items-center rounded-full border bg-white text-gray-600 shadow-md transition hover:text-[#07b8b2] md:hidden"
+                aria-label="Scroll jadwal dokter ke kiri"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <div className="flex space-x-2">
+                {Array.from({ length: totalSlides }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-200 ${index === currentSlide ? 'bg-[#07b8b2] w-6' : 'bg-gray-300'
+                      }`}
+                    aria-label={`Tampilkan jadwal dokter slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={nextSlide}
+                className="grid h-10 w-10 place-items-center rounded-full border bg-white text-gray-600 shadow-md transition hover:text-[#07b8b2] md:hidden"
+                aria-label="Scroll jadwal dokter ke kanan"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
             </div>
           )}
         </div>

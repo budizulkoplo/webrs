@@ -37,9 +37,9 @@ export function RoomInfoSection({ roomInfoPages, autoSlide = true }: RoomInfoSec
   if (!roomInfoPages.length) return null;
 
   return (
-    <section className="py-8 lg:py-12 max-w-7xl mx-auto">
+    <section className="py-6 lg:py-10 max-w-7xl mx-auto">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Info Kamar Rawat Inap
           </h2>

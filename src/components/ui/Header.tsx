@@ -306,27 +306,31 @@ const Header: React.FC<HeaderProps> = ({ websiteSettings, menuCategories }) => {
         className={`sticky top-0 z-50 bg-white border-b transition-all duration-300 ${scrolled ? 'border-gray-200 shadow-lg' : 'border-gray-100'
           }`}
       >
-        <div className="mx-auto max-w-7xl px-4">
+        <div className="mx-auto max-w-[1500px] px-4 sm:px-6">
           <div className="flex items-center justify-between h-16 lg:h-18">
             {/* Logo Section */}
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-3 group">
-                {websiteSettings?.logo_url && (
-                  <div className="relative">
-                    <Image
-                      src={websiteSettings?.logo_url}
-                      alt="Hospital Logo"
-                      width={120}
-                      height={120}
-                      style={{ width: 'auto', height: 'auto' }}
-                      className="w-32 h-32 object-contain transition-transform group-hover:scale-105"
-                      priority
-                    />
-                  </div>
-                )}
+            <div className="flex min-w-0 items-center space-x-3 lg:min-w-[360px] lg:space-x-4">
+              <Link href="/" className="group flex min-w-0 items-center space-x-3">
+                <div className="relative h-12 w-12 shrink-0">
+                  <Image
+                    src="/logo.png"
+                    alt="Hospital Logo"
+                    fill
+                    sizes="48px"
+                    className="object-contain transition-transform group-hover:scale-105"
+                    priority
+                  />
+                </div>
+
+                <span className="min-w-0 leading-[1.08] tracking-wide text-[#006f6c]">
+                  <span className="block whitespace-nowrap text-[11px] font-black uppercase sm:text-xs">Rumah Sakit</span>
+                  <span className="block whitespace-nowrap text-[13px] font-black uppercase sm:text-[16px]">
+                    PKU Muhammadiyah Boja
+                  </span>
+                </span>
 
                 {websiteSettings?.logo_akreditasi_url && (
-                  <div className="relative">
+                  <div className="relative hidden sm:block">
                     <Image
                       src={websiteSettings?.logo_akreditasi_url}
                       alt="Accreditation"
@@ -342,12 +346,12 @@ const Header: React.FC<HeaderProps> = ({ websiteSettings, menuCategories }) => {
 
             {/* Desktop Navigation */}
             {!isMobile && (
-              <nav className="flex items-center space-x-1">
+              <nav className="flex flex-1 items-center justify-end space-x-1">
                 {/* Home Link */}
                 <div className="relative">
                   <Link
                     href="/"
-                    className={`flex items-center px-4 py-2 rounded-lg transition-all duration-200 font-medium ${isMounted && pathname === '/'
+                    className={`flex items-center whitespace-nowrap px-3 py-2 rounded-lg transition-all duration-200 font-medium ${isMounted && pathname === '/'
                       ? 'text-[#07b8b2] bg-teal-50'
                       : 'text-gray-700 hover:text-[#07b8b2] hover:bg-teal-50'
                       }`}
@@ -366,15 +370,25 @@ const Header: React.FC<HeaderProps> = ({ websiteSettings, menuCategories }) => {
                   const isActive = isCategoryActive(category);
 
                   return (
-                    <div
-                      key={category.id_kategori}
+                    <React.Fragment key={category.id_kategori}>
+                      {category.slug_kategori === 'hubungi-kami' && (
+                        <Link
+                          href="https://career.rspkuboja.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center whitespace-nowrap px-3 py-2 rounded-lg transition-all duration-200 font-medium text-gray-700 hover:text-[#07b8b2] hover:bg-teal-50"
+                        >
+                          Career
+                        </Link>
+                      )}
+                      <div
                       className="relative"
                       onMouseEnter={() => handleMouseEnter(category.id_kategori)}
                       onMouseLeave={handleMouseLeave}
                     >
                       {hasSubmenu ? (
                         <div
-                          className={`flex items-center px-4 py-2 rounded-lg transition-all duration-200 font-medium cursor-pointer ${isActive
+                          className={`flex items-center whitespace-nowrap px-3 py-2 rounded-lg transition-all duration-200 font-medium cursor-pointer ${isActive
                             ? 'text-[#07b8b2] bg-teal-50'
                             : 'text-gray-700 hover:text-[#07b8b2] hover:bg-teal-50'
                             }`}
@@ -385,7 +399,7 @@ const Header: React.FC<HeaderProps> = ({ websiteSettings, menuCategories }) => {
                       ) : (
                         <Link
                           href={`/${category.slug_kategori}`}
-                          className={`flex items-center px-4 py-2 rounded-lg transition-all duration-200 font-medium ${isActive
+                          className={`flex items-center whitespace-nowrap px-3 py-2 rounded-lg transition-all duration-200 font-medium ${isActive
                             ? 'text-[#07b8b2] bg-teal-50'
                             : 'text-gray-700 hover:text-[#07b8b2] hover:bg-teal-50'
                             }`}
@@ -468,6 +482,7 @@ const Header: React.FC<HeaderProps> = ({ websiteSettings, menuCategories }) => {
                         </div>
                       )}
                     </div>
+                    </React.Fragment>
                   );
                 })}
               </nav>
@@ -563,7 +578,19 @@ const Header: React.FC<HeaderProps> = ({ websiteSettings, menuCategories }) => {
                 const isActive = isCategoryActive(category);
 
                 return (
-                  <div key={category.id_kategori} className="border-b border-gray-50">
+                  <React.Fragment key={category.id_kategori}>
+                    {category.slug_kategori === 'hubungi-kami' && (
+                      <Link
+                        href="https://career.rspkuboja.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={closeMobileMenu}
+                        className="flex items-center text-sm px-6 py-4 transition-colors border-b border-gray-50 text-gray-700 hover:text-[#07b8b2] hover:bg-gray-50"
+                      >
+                        <span className="font-medium">Career</span>
+                      </Link>
+                    )}
+                  <div className="border-b border-gray-50">
                     {hasSubmenu ? (
                       // Menu dengan submenu - gunakan button
                       <button
@@ -654,6 +681,7 @@ const Header: React.FC<HeaderProps> = ({ websiteSettings, menuCategories }) => {
                       </div>
                     )}
                   </div>
+                  </React.Fragment>
                 );
               })}
             </div>

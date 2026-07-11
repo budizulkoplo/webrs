@@ -25,6 +25,28 @@ export async function GET(
   const filePath = join(process.cwd(), 'public', 'uploads', relPath);
 
   if (!existsSync(filePath)) {
+    const legacyOrigin = process.env.LEGACY_UPLOAD_ORIGIN || 'https://rspkuboja.com';
+    const legacyUrl = `${legacyOrigin.replace(/\/$/, '')}/uploads/${relPath}`;
+
+    try {
+      const legacyResponse = await fetch(legacyUrl, {
+        cache: 'force-cache',
+      });
+      const contentType = legacyResponse.headers.get('content-type') || '';
+
+      if (legacyResponse.ok && contentType.startsWith('image/')) {
+        return new NextResponse(await legacyResponse.arrayBuffer(), {
+          status: 200,
+          headers: {
+            'Content-Type': contentType,
+            'Cache-Control': 'public, max-age=86400',
+          },
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching legacy upload:', error);
+    }
+
     return NextResponse.json(
       { error: 'File tidak ditemukan', message: `${filePath}` },
       { status: 404 }
