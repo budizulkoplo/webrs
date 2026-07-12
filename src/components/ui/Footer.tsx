@@ -9,8 +9,8 @@ import {
     Mail,
     MapPin,
     Clock,
-    ArrowUp,
     ExternalLink,
+    MessageCircle,
 } from 'lucide-react'
 
 export const TiktokIcon = ({ className }: { className?: string }) => (
@@ -59,14 +59,6 @@ interface FooterProps {
 
 export default function Footer({ settings, menuCategories = [] }: FooterProps) {
     const currentYear = new Date().getFullYear()
-
-    // Scroll to top function
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        })
-    }
 
     // Get social media links
     const socialLinks = [
@@ -139,14 +131,17 @@ export default function Footer({ settings, menuCategories = [] }: FooterProps) {
 
     return (
         <>
-            {/* Back to Top Button */}
-            <button
-                onClick={scrollToTop}
-                className="fixed bottom-6 right-6 z-40 p-3 bg-[#07b8b2] text-white rounded-full shadow-lg hover:bg-teal-700 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#07b8b2] focus:ring-opacity-50"
-                aria-label="Scroll to top"
+            {/* WhatsApp Contact Button */}
+            <a
+                href="https://wa.me/6285745374056"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[#1ebe5d] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 sm:px-5"
+                aria-label="Hubungi kami via WhatsApp"
             >
-                <ArrowUp className="w-5 h-5" />
-            </button>
+                <MessageCircle className="h-5 w-5" />
+                <span className="hidden sm:inline">Hubungi Kami</span>
+            </a>
 
             <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
                 {/* Background Pattern */}

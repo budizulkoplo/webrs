@@ -377,7 +377,7 @@ const Header: React.FC<HeaderProps> = ({ websiteSettings, menuCategories }) => {
                           rel="noopener noreferrer"
                           className="flex items-center whitespace-nowrap px-3 py-2 rounded-lg transition-all duration-200 font-medium text-gray-700 hover:text-[#07b8b2] hover:bg-teal-50"
                         >
-                          Career
+                          Karir
                         </Link>
                       )}
                       <div
@@ -586,7 +586,7 @@ const Header: React.FC<HeaderProps> = ({ websiteSettings, menuCategories }) => {
                         onClick={closeMobileMenu}
                         className="flex items-center text-sm px-6 py-4 transition-colors border-b border-gray-50 text-gray-700 hover:text-[#07b8b2] hover:bg-gray-50"
                       >
-                        <span className="font-medium">Career</span>
+                        <span className="font-medium">Karir</span>
                       </Link>
                     )}
                   <div className="border-b border-gray-50">

@@ -107,6 +107,7 @@ export async function createBeritaAction(formData: FormData) {
 
         // Revalidate paths
         revalidatePath("/admin/berita");
+        revalidatePath("/");
         if (status_berita === "publish") {
             revalidatePath("/berita");
             revalidatePath(`/berita/${slug_berita}`);

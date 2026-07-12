@@ -9,6 +9,8 @@ import { getAboutUsData, getDoctorsWithSchedule, getHeroData, getLatestNews, get
 import { getRoomInfoPages } from "@/lib/actions/halaman"
 import PromotionsSection from '@/components/landing/promotions-section';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function HomePage() {
   // Fetch all data
