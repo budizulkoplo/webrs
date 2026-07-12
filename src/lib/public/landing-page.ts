@@ -65,6 +65,23 @@ export async function getAboutUsData(): Promise<AboutUsSectionType | null> {
   return await prisma.aboutUsSection.findFirst();
 }
 
+export async function getWebsiteQuickLinks() {
+  const settings = await prisma.websiteSettings.findFirst({
+    orderBy: {
+      updatedAt: 'desc',
+    },
+    select: {
+      daftaronline: true,
+      pemeriksaan_pasien: true,
+    },
+  });
+
+  return {
+    daftaronline: settings?.daftaronline || 'https://daftaronline.rspkuboja.com',
+    pemeriksaan_pasien: settings?.pemeriksaan_pasien || 'https://pasien.rspkuboja.com',
+  };
+}
+
 export async function getLatestNews(): Promise<Berita[]> {
   // Implementasi fetch dari database
   const beritaRaw = await prisma.beritas.findMany({

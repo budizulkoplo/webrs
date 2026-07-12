@@ -18,6 +18,10 @@ import { HeroSection } from '@/types/public';
 
 interface HeroSectionProps {
   heroData: HeroSection[];
+  quickLinks?: {
+    daftaronline?: string | null;
+    pemeriksaan_pasien?: string | null;
+  };
 }
 
 const fallbackHero: HeroSection = {
@@ -32,7 +36,7 @@ const fallbackHero: HeroSection = {
   cta_button_link_2: null,
 };
 
-export default function HeroSectionComponent({ heroData }: HeroSectionProps) {
+export default function HeroSectionComponent({ heroData, quickLinks }: HeroSectionProps) {
   const slides = useMemo(() => {
     const data = heroData?.length ? heroData : [fallbackHero];
 
@@ -154,7 +158,7 @@ export default function HeroSectionComponent({ heroData }: HeroSectionProps) {
       <div className="relative z-20 mx-auto -mt-10 w-full max-w-[1200px] px-4 md:-mt-16 md:px-6 lg:px-0">
         <div className="grid grid-cols-2 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_18px_45px_rgba(15,23,42,.10)] md:rounded-3xl lg:grid-cols-4 lg:shadow-[0_22px_55px_rgba(15,23,42,.10)]">
           <QuickLink
-            href="https://daftaronline.rspkuboja.com"
+            href={quickLinks?.daftaronline || 'https://daftaronline.rspkuboja.com'}
             icon={<CalendarDays className="h-6 w-6 md:h-9 md:w-9" />}
             title="Pendaftaran Online"
             description="Daftar tanpa antri lebih mudah"
@@ -166,7 +170,7 @@ export default function HeroSectionComponent({ heroData }: HeroSectionProps) {
             description="Lihat jadwal praktik dokter kami"
           />
           <QuickLink
-            href="https://pasien.rspkuboja.com"
+            href={quickLinks?.pemeriksaan_pasien || 'https://pasien.rspkuboja.com'}
             icon={<FlaskConical className="h-6 w-6 md:h-9 md:w-9" />}
             title="Hasil Pemeriksaan"
             description="Cek hasil pemeriksaan Anda secara online"

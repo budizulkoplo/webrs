@@ -230,6 +230,8 @@ export interface WebsiteSettings {
     twitter_url?: string | null;
     instagram_url?: string | null;
     youtube_url?: string | null;
+    daftaronline?: string | null;
+    pemeriksaan_pasien?: string | null;
     footer_text?: string | null;
     copyright_text?: string | null;
     createdAt?: Date | null;

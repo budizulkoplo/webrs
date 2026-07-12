@@ -89,6 +89,8 @@ function getDefaultWebsiteSettings(): WebsiteSettings {
     twitter_url: null,
     instagram_url: null,
     youtube_url: null,
+    daftaronline: null,
+    pemeriksaan_pasien: null,
     footer_text: null,
     copyright_text: null,
     createdAt: null,

@@ -265,6 +265,8 @@ model WebsiteSettings {
   twitter_url         String?   @db.VarChar(255)
   instagram_url       String?   @db.VarChar(255)
   youtube_url         String?   @db.VarChar(255)
+  daftaronline        String?   @db.VarChar(255)
+  pemeriksaan_pasien  String?   @db.VarChar(255)
   footer_text         String?   @db.Text
   copyright_text      String?   @db.VarChar(255)
   createdAt           DateTime? @default(now()) @map("created_at") @db.Timestamp(0)

@@ -5,7 +5,7 @@ import DoctorScheduleSection from '@/components/landing/doctor-schedule-section'
 import { RoomInfoSection } from "@/components/landing/kamar-rawat-section"
 import AboutUsSection from '@/components/landing/about-us-section';
 import NewsSection from '@/components/landing/news-section';
-import { getAboutUsData, getDoctorsWithSchedule, getHeroData, getLatestNews, getPromotions, getServicesData } from '@/lib/public/landing-page';
+import { getAboutUsData, getDoctorsWithSchedule, getHeroData, getLatestNews, getPromotions, getServicesData, getWebsiteQuickLinks } from '@/lib/public/landing-page';
 import { getRoomInfoPages } from "@/lib/actions/halaman"
 import PromotionsSection from '@/components/landing/promotions-section';
 
@@ -14,7 +14,7 @@ export const revalidate = 0;
 
 export default async function HomePage() {
   // Fetch all data
-  const [heroData, servicesData, doctorsData, aboutData, newsData, promotionsData, kamarData] = await Promise.all([
+  const [heroData, servicesData, doctorsData, aboutData, newsData, promotionsData, kamarData, quickLinks] = await Promise.all([
     getHeroData(),
     getServicesData(), 
     getDoctorsWithSchedule(),
@@ -22,11 +22,12 @@ export default async function HomePage() {
     getLatestNews(),
     getPromotions(),
     getRoomInfoPages(),
+    getWebsiteQuickLinks(),
   ]);
 
   return (
     <main className="min-h-screen">
-      <HeroSection heroData={heroData} />
+      <HeroSection heroData={heroData} quickLinks={quickLinks} />
       <ServicesSection services={servicesData} />
       <DoctorScheduleSection doctorsWithSchedule={doctorsData} />
       <RoomInfoSection roomInfoPages={kamarData} autoSlide={true} />

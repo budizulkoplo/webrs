@@ -38,6 +38,8 @@ export function WebsiteSettingsForm({ websiteSettings, mode }: WebsiteSettingsFo
     twitter_url: websiteSettings?.twitter_url || '',
     instagram_url: websiteSettings?.instagram_url || '',
     youtube_url: websiteSettings?.youtube_url || '',
+    daftaronline: websiteSettings?.daftaronline || '',
+    pemeriksaan_pasien: websiteSettings?.pemeriksaan_pasien || '',
     footer_text: websiteSettings?.footer_text || '',
     copyright_text: websiteSettings?.copyright_text || '',
   })
@@ -220,6 +222,36 @@ export function WebsiteSettingsForm({ websiteSettings, mode }: WebsiteSettingsFo
                 placeholder="Enter accreditation name"
               />
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Public Link Settings */}
+        <Card>
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+              <div className="h-4 w-4 sm:h-5 sm:w-5 bg-teal-500 rounded"></div>
+              <Globe className="h-4 w-4 sm:h-5 sm:w-5" />
+              Link Publik
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Input
+              id="daftaronline"
+              label="URL Pendaftaran Online"
+              value={formData.daftaronline || ''}
+              onChange={(e) => handleInputChange('daftaronline', e.target.value)}
+              placeholder="https://daftaronline.rspkuboja.com"
+              helperText="Dipakai untuk tombol Pendaftaran Online di halaman home"
+            />
+
+            <Input
+              id="pemeriksaan_pasien"
+              label="URL Hasil Pemeriksaan"
+              value={formData.pemeriksaan_pasien || ''}
+              onChange={(e) => handleInputChange('pemeriksaan_pasien', e.target.value)}
+              placeholder="https://pasien.rspkuboja.com"
+              helperText="Dipakai untuk tombol Hasil Pemeriksaan di halaman home"
+            />
           </CardContent>
         </Card>
 
